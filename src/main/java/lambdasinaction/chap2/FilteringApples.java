@@ -16,6 +16,9 @@ public class FilteringApples{
 		List<Apple> redApples = filterApplesByColor(inventory, "red");
 		System.out.println(redApples);
 
+
+// ---  上面的值参数化，  下面的是 类，方法，参数化
+
 		// [Apple{color='green', weight=80}, Apple{color='green', weight=155}]
 		List<Apple> greenApples2 = filter(inventory, new AppleColorPredicate());
 		System.out.println(greenApples2);
@@ -37,7 +40,7 @@ public class FilteringApples{
 		System.out.println(redApples2);
 
 	}
-
+// 第一次
 	public static List<Apple> filterGreenApples(List<Apple> inventory){
 		List<Apple> result = new ArrayList<>();
 		for(Apple apple: inventory){
@@ -47,7 +50,7 @@ public class FilteringApples{
 		}
 		return result;
 	}
-
+// 第二次，把颜色作为参数
 	public static List<Apple> filterApplesByColor(List<Apple> inventory, String color){
 		List<Apple> result = new ArrayList<>();
 		for(Apple apple: inventory){
@@ -57,7 +60,7 @@ public class FilteringApples{
 		}
 		return result;
 	}
-
+//   第三次尝试：对你能想到的每个属性做筛选
 	public static List<Apple> filterApplesByWeight(List<Apple> inventory, int weight){
 		List<Apple> result = new ArrayList<>();
 		for(Apple apple: inventory){
@@ -67,6 +70,8 @@ public class FilteringApples{
 		}
 		return result;
 	}
+
+//--------前三次尝试都是 把值作为参数，
 
 
 	public static List<Apple> filter(List<Apple> inventory, ApplePredicate p){
@@ -79,6 +84,8 @@ public class FilteringApples{
 		return result;
 	}       
 
+
+//	 内部bean类
 	public static class Apple {
 		private int weight = 0;
 		private String color = "";
@@ -112,9 +119,14 @@ public class FilteringApples{
 		}
 	}
 
+
+// 接口
 	interface ApplePredicate{
 		public boolean test(Apple a);
 	}
+
+//
+
 
 	static class AppleWeightPredicate implements ApplePredicate{
 		public boolean test(Apple apple){
